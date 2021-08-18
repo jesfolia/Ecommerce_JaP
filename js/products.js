@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", function (e) {
     fetch(url)
         .then(result => result.json())
         .then(data => {
-            for (let index = 0; index < data.length; index++) {
-                let name = data[index].name;
+            //for (let index = 0; index < data.length; index++) {       
+            let index=0;
+            while (index < data.length){  
+            let name = data[index].name;
                 let description = data[index].description;
                 let cost = data[index].cost;
                 let currency = data[index].currency;
@@ -38,8 +40,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
                 `
                 document.getElementById("autos").innerHTML += tabla;
-
-
+index ++;
             }
         })
 });
