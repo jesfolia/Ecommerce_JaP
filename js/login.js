@@ -21,7 +21,11 @@ function validarFormulario(evento) { // parte grupal
 
     return;
   }
-  else {
+  else { //Entrega 2
+    let fin = user.indexOf("@");
+    let Usuario = user.substring(0, fin);
+    localStorage.setItem("Usuario", Usuario); // Guarda los datos que estan en la variable user en LocalStronge
+    console.log(Usuario);
     window.location.href = "./principal.html"; //Le indica al boton a que  ventana tiene que ir
   }
 }
