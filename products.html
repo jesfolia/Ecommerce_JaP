@@ -13,7 +13,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/styles.css" rel="stylesheet">
   </head>
-  <body>
+  <body id="cuerpo">
     <nav class="site-header sticky-top py-1 bg-dark">
       <div class="container d-flex flex-column flex-md-row justify-content-between">
         <a class="py-2 d-none d-md-inline-block" href="principal.html">Inicio</a>
@@ -24,13 +24,20 @@
         <div class="py-2 d-none d-md-inline-block" style="color: aliceblue;" id="Usuario"></div> <!--entrega 2-->    </div>
       </div>
     </nav>
-    <div><input type="number" id="Filtro"></div>
+    <div><input type="number" id="FiltroMin" placeholder="Minimo"></div>
+    <div><input type="number" id="FiltroMax" placeholder="Maximo"></div>
 	  <div><button id="FiltroBtn">Filtrar</button></div>
+    <div><button id="FiltroLimpiar">Limpiar</button></div>
+    <div><p">Ordenar por</p> 
+      <button id="relevante">Más relevante</button>
+      <button id="MenorPrecio"><img src="" width="50" height="20">Menor Precio</button>
+      <button id="MayorPrecio"><img src="" width="50" height="20">Mayor Precio</button>
+      </div>
     <div class="container p-5">
       <div class="container" id="autos">
 
       </div>
-      
+
 </div>      
     </div>
     <footer class="text-muted bg-light">
