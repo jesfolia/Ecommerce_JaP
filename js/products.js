@@ -35,8 +35,6 @@ function aMostrar(tipo) {
                 let max = document.getElementById("FiltroMax").value;
 
                 while (index < data.length) {
-                    console.log("estoy")
-
                     if (min <= data[index].cost && max >= data[index].cost) {
                         datos.push (data[index]);
                     }
@@ -51,7 +49,9 @@ function aMostrar(tipo) {
                 let currency = datos[index].currency;
                 let imgSrc = datos[index].imgSrc;
                 let soldCount = datos[index].soldCount;
+
                 tabla += `
+                <a href="product-info.html" class="list-group-item list-group-item-action"> 
                     <div class="list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col-3">
@@ -70,6 +70,7 @@ function aMostrar(tipo) {
                             </div>
                         </div>
                     </div>
+                    </a>
                     `
                 document.getElementById("autos").innerHTML = tabla;
                 index++;
