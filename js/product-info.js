@@ -3,10 +3,10 @@
 //elementos HTML presentes.
 
 let urlDatos = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
-let urlComentarios ="https://japdevdep.github.io/ecommerce-api/product/5678-comments.json" ;
+let urlComentarios = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 
 function aMostrar() {
-    let tabla ="";
+    let tabla = "";
     fetch(urlDatos)
         .then(result => result.json())
         .then(data => {
@@ -16,8 +16,8 @@ function aMostrar() {
             let currency = data.currency;
             let soldCount = data.soldCount;
             document.getElementById("productName").innerHTML = name;
-            document.getElementById("productDescription").innerHTML = description ;
-            document.getElementById("productCost").innerHTML = cost + " " +currency;
+            document.getElementById("productDescription").innerHTML = description;
+            document.getElementById("productCost").innerHTML = currency + " " + cost;
             document.getElementById("productSold").innerHTML = soldCount;
             for (let index = 0; index < data.images.length; index++) {
                 let imageSrc = data.images[index];
@@ -30,46 +30,95 @@ function aMostrar() {
                     `
                 document.getElementById("productImages").innerHTML = tabla;
             }
-     
-            
         });
 }
-function Comments(){
-    let comentarios ="";
+function Comments() {
+    let comentarios = "";
     let index = 0;
     fetch(urlComentarios)
         .then(result => result.json())
         .then(data => {
-            while(index < data.length){
-                let score = data[index].score;
+            while (index < data.length) {
                 let description = data[index].description;
-                let user =  data[index].user;
+                let user = data[index].user;
                 let dateTime = data[index].dateTime;
-            comentarios += `
-                <div class="list-group-item list-group-item-action">
-                        <div class="col">
-                            <div class="d-flex w-100 justify-content-between">
-                                <p class="mb-1" style="color: red;" >`+ user + `</p>
-                                <small class="text-muted">` + dateTime + `</small>
-                            </div>
-                            <div>
-                                <small class="text-muted">` + description + `</small>
-                                <br>
-                            </div>
-                        </div>
-                </div>
-                </a>
-                `
-            
-            index ++;
-            }
-            document.getElementById("productComments").innerHTML = comentarios;
-            document.getElementById("productCommentsCant").innerHTML += "(" + data.length + "):";
+                let score = data[index].score;
+                let estrellas = "";
+                for (let i = 0; i < score; i++) {
+                    estrellas += '<span style="color: yellow;" class="fa fa-star"/>'; //Clase predeterminada para las estrellas
+                }
+                comentarios += `
+                    <div class="list-group-item list-group-item-action">
+                            <div class="col">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p class="mb-1" style="color: red;" >`+ user + `</p>
+                                    <small class="text-muted">` + dateTime + `</small>
+                                </div>
+                                <div>
+                                    <small class="text-muted">` + description + `</small>
+                                    <br>
+                                    <small class="text-muted">` + estrellas + `</small>
 
+                                </div>
+                            </div>         
+                    </div>
+                    `
+                index++;
+            }
+            document.getElementById("productComments").innerHTML += comentarios;
+            document.getElementById("productCommentsCant").innerHTML += "(" + data.length + "):";
         });
 }
 
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", function (e) {
     aMostrar();
     Comments();
 });
+
+document.getElementById("enviarComentario").onclick = function (e) {
+    let comentarios = document.getElementById("addnewcomment").value;
+    let puntaje = document.getElementById("puntaje").value;
+    let mensaje = "";
+    let nuevoComentario = "";
+    if (comentarios.length == 0 || puntaje == 0) {
+        mensaje += `	
+        <FONT FACE="arial" SIZE=2 COLOR="red">
+        El comentarios o puntaje no pueden estar vacios</FONT>
+    `
+    }
+    else {
+        mensaje += `	
+            <FONT FACE="arial" SIZE=2 COLOR="red">
+            Mensaje enviado</FONT>
+        `
+        let description = comentarios;
+        let user = localStorage.getItem('Usuario');
+        let score = puntaje;
+        let dateTime = new Date().toLocaleString();
+        let estrellas = "";
+        for (let i = 0; i < score; i++) {
+            estrellas += '<span style="color: yellow;" class="fa fa-star"/>'; //Clase predeterminada para las estrellas
+        }
+        nuevoComentario += `
+                    <div class="list-group-item list-group-item-action">
+                            <div class="col">
+                                <div class="d-flex w-100 justify-content-between">
+                                    <p class="mb-1" style="color: red;" >`+ user + `</p>
+                                    <small class="text-muted">` + dateTime + `</small>
+                                </div>
+                                <div>
+                                    <small class="text-muted">` + description + `</small>
+                                    <br>
+                                    <small class="text-muted">` + estrellas + `</small>
+
+                                </div>
+                            </div>         
+                    </div>
+                    `
+
+        document.getElementById("productComments").innerHTML += nuevoComentario;
+        document.getElementById("addnewcomment").value = "";
+        document.getElementById("puntaje").value = 0;
+    }
+    document.getElementById("mensajeEnviado").innerHTML = mensaje;
+}
