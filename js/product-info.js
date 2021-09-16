@@ -66,7 +66,6 @@ function Comments() {
                 index++;
             }
             document.getElementById("productComments").innerHTML += comentarios;
-            document.getElementById("productCommentsCant").innerHTML += "(" + data.length + "):";
         });
 }
 
