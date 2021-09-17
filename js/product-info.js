@@ -5,6 +5,7 @@
 let urlDatos = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
 let urlComentarios = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
 
+
 function aMostrar() {
     let tabla = "";
     fetch(urlDatos)
@@ -15,6 +16,7 @@ function aMostrar() {
             let cost = data.cost;
             let currency = data.currency;
             let soldCount = data.soldCount;
+            let relacionados = data.relatedProducts;
             document.getElementById("productName").innerHTML = name;
             document.getElementById("productDescription").innerHTML = description;
             document.getElementById("productCost").innerHTML = currency + " " + cost;
@@ -30,6 +32,43 @@ function aMostrar() {
                     `
                 document.getElementById("productImages").innerHTML = tabla;
             }
+            let i = 0;
+            let productosR = "";
+            fetch(PRODUCTS_URL)
+                .then(result => result.json())
+                .then(datos => {
+                    while (i < datos.length) {
+                        if (relacionados[i] = i) {
+                            let name = datos[i].name;
+                            let description = datos[i].description;
+                            let cost = datos[i].cost;
+                            let currency = datos[i].currency;
+                            let imgSrc = datos[i].imgSrc;
+                            productosR += `
+                            
+                            <div class="col-lg-3 col-md-4 col-6">
+                        <div class="d-block mb-4 h-100">
+                            <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
+                            <h3 class="m-3">` + name + `</h3>
+
+                            <p class="card-text">` + description +` <br> ` + currency + ` ` + cost + `</p>
+
+                        </div>
+                    </div>
+                           
+                      
+               
+       
+                    `
+                            document.getElementById("productoRelacionado").innerHTML = productosR;
+                            i++;
+
+                        }
+                        i++;
+                    }
+                });
+
+
         });
 }
 function Comments() {
@@ -69,8 +108,10 @@ function Comments() {
         });
 }
 
+
 document.addEventListener("DOMContentLoaded", function (e) {
     aMostrar();
+
     Comments();
 });
 

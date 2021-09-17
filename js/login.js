@@ -3,6 +3,7 @@
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function (e) {//Espere a que este toda la elementos del html presentes
+  Fecha = "";
   document.getElementById("signIn").onclick = function (e) {//le dice que se haga todo cuando se haga click en el boton con id sendBtn 
     validarFormulario(e);
   };
@@ -22,11 +23,26 @@ function validarFormulario(evento) { // parte grupal
     return;
   }
   else { //Entrega 2
-    let fin = user.indexOf("@");
-    let Usuario = user.substring(0, fin);
-    let Fecha = new Date().toLocaleString();    
+    let a = 0;
+    for (let index = 0; index < user.length; index++) {
+      if (user[index] == "@") {
+        a++;
+      }
+    }
+    if (a == 1) {
+      let fin = user.indexOf("@");
+      let Usuario = user.substring(0, fin);
+
+      localStorage.setItem("Usuario", Usuario);
+    }
+    else {
+      localStorage.setItem("Usuario", user);
+
+    }
+    let Fecha = new Date().toLocaleString();
     localStorage.setItem("Fecha", Fecha);
-    localStorage.setItem("Usuario", Usuario); // Guarda los datos que estan en la variable user en LocalStronge
+
+    // Guarda los datos que estan en la variable user en LocalStronge
     window.location.href = "./principal.html"; //Le indica al boton a que  ventana tiene que ir
 
   }
