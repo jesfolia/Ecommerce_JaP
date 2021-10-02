@@ -11,9 +11,13 @@ var showSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "block";
 }
 
-var hideSpinner = function(){
+let hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
+document.getElementById("cerrar").onclick = function (e) { //Entrega 4
+  localStorage.clear();
+}
+
 
 var getJSONData = function(url){
     var result = {};

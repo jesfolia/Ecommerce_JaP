@@ -4,8 +4,6 @@
 
 let urlDatos = "https://japdevdep.github.io/ecommerce-api/product/5678.json";
 let urlComentarios = "https://japdevdep.github.io/ecommerce-api/product/5678-comments.json";
-
-
 function aMostrar() {
     let tabla = "";
     fetch(urlDatos)
@@ -17,21 +15,45 @@ function aMostrar() {
             let currency = data.currency;
             let soldCount = data.soldCount;
             let relacionados = data.relatedProducts;
+            // Mostrar datos sobre el producto
             document.getElementById("productName").innerHTML = name;
             document.getElementById("productDescription").innerHTML = description;
             document.getElementById("productCost").innerHTML = currency + " " + cost;
             document.getElementById("productSold").innerHTML = soldCount;
             for (let index = 0; index < data.images.length; index++) {
                 let imageSrc = data.images[index];
-                tabla += `
-                    <div class="col-lg-3 col-md-4 col-6">
-                        <div class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-                        </div>
-                    </div>
+                if (index == 0) {
+                    tabla += `
+                    <div id="Mycarousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="` + imageSrc + `" class="d-block w-100" alt="` + data.images[index] + `">
+                                </div>
                     `
-                document.getElementById("productImages").innerHTML = tabla;
+                }
+                else {
+                    tabla += `
+                                <div class="carousel-item">
+                                    <img src="` + imageSrc + `" class="d-block w-100" alt="` + data.images[index] + `">
+                                </div>
+                    `
+                }
+
             }
+            tabla += `
+                </div>
+                <a class="carousel-control-prev" href="#Mycarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#Mycarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+                </div>
+                    `
+            document.getElementById("productImages").innerHTML = tabla;
+            // Mostrar productos relacionados
             let i = 0;
             let productosR = "";
             fetch(PRODUCTS_URL)
@@ -44,31 +66,76 @@ function aMostrar() {
                             let cost = datos[i].cost;
                             let currency = datos[i].currency;
                             let imgSrc = datos[i].imgSrc;
-                            productosR += `
-                            
-                            <div class="col-lg-3 col-md-4 col-6">
-                        <div class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
-                            <h3 class="m-3">` + name + `</h3>
-
-                            <p class="card-text">` + description +` <br> ` + currency + ` ` + cost + `</p>
-
-                        </div>
-                    </div>
+                            console.log (i)
+                            if( i == 1){
+                                productosR += `
+                                    <div id="Carousel" class="carousel slide" data-ride="carousel">
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active">
+                                            <a href="product-info.html" class="card mb-4 shadow-sm custom-card"> 
+                                            <div class="col-lg-3 col-md-4 col-6" >
+                                                <div class="d-block mb-4 h-100" style ="margin-left auto ; margin-right:auto">
+                                                    <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
+                                                    <h3 class="m-3">` + name + `</h3>
+                                                    <p class="card-text">` + description + ` <br> ` + currency + ` ` + cost + `</p>
+                                                </div>
+                                            </div>   
+                                        </a>      
+     
+                                            </div>       
+                                `
+                            }
+                            else{
                            
+                                productosR += `
+                                <div class="carousel-item">
+                                    <a href="product-info.html"class="card mb-4 shadow-sm custom-card" > 
+                                        <div class="col-lg-3 col-md-4 col-6">
+                                            <div class="d-block mb-4 h-100">
+                                                <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
+                                                <h3 class="m-3">` + name + `</h3>
+                                                <p class="card-text">` + description + ` <br> ` + currency + ` ` + cost + `</p>
+                                            </div>
+                                        </div>   
+                                    </a>      
+                                </div>    
                       
-               
-       
-                    `
-                            document.getElementById("productoRelacionado").innerHTML = productosR;
-                            i++;
+                                `
+                            }          
+
+                            
+                    i++;
+    
 
                         }
                         i++;
                     }
+                    productosR += `
+                    </div>
+                    <a class="carousel-control-next" href="#Carousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+        `
+                    document.getElementById("productoRelacionado").innerHTML += productosR;
+                    console.log(productosR)
                 });
 
-
+/*
+                      productosR += `
+                                            <div class="carousel-item">
+                                                <a href="product-info.html" class="list-group-item list-group-item-action"> 
+                                                    <div class="col-lg-3 col-md-4 col-6">
+                                                        <div class="d-block mb-4 h-100">
+                                                            <img class="img-fluid img-thumbnail" src="` + imgSrc + `" alt="">
+                                                            <h3 class="m-3">` + name + `</h3>
+                                                            <p class="card-text">` + description + ` <br> ` + currency + ` ` + cost + `</p>
+                                                        </div>
+                                                    </div>   
+                                                </a>      
+                                            </div>    
+                                `*/
         });
 }
 function Comments() {

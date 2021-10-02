@@ -22,16 +22,18 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <div class="py-2 d-none d-md-inline-block" style="color: aliceblue;" >
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="Usuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="py-2 d-none d-md-inline-block" style="color: aliceblue;">
+        <!-- Entrega 4 -->
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="Usuario" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
         </button>
-        <div class="dropdown-menu" >
+        <div class="dropdown-menu">
           <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="index.html" id="cerrar">Cerrar sesión</a>
         </div>
       </div>
-      </nav>
+  </nav>
   <div class="container p-5">
     <div class="text-center p-4">
       <h2>Descripción del producto</h2>
@@ -39,43 +41,41 @@
       <p class="small alert-warning py-3"><strong>Nota: </strong>por simplicidad, cualquiera sea el producto
         seleccionada previamente, siempre se visualizará la presente: <strong>Chevrolet Onix Joy</strong>.</p>
     </div>
-  <div id="autos">
-    <h3 id="productName"></h3>
-    <hr class="my-3">
-    <dl>
-      <dt>Descripción</dt>
-      <dd>
-        <p id="productDescription"></p>
-      </dd>
+    <div id="autos">
+      <h3 id="productName"></h3>
+      <hr class="my-3">
+      <dl>
+        <dt>Descripción</dt>
+        <dd>
+          <p id="productDescription"></p>
+        </dd>
 
-      <dt>Costo:</dt>
-      <dd>
-        <p id="productCost"></p>
-      </dd>
+        <dt>Costo:</dt>
+        <dd>
+          <p id="productCost"></p>
+        </dd>
 
-      <dt>Vendidos: </dt>
-      <dd>
-        <p id="productSold"></p>
-      </dd>
-
-      <dt>Imágenes ilustrativas</dt>
-      <dd>
-        <div class="row text-center text-lg-left pt-2" id="productImages">
+        <dt>Vendidos: </dt>
+        <dd>
+          <p id="productSold"></p>
+        </dd>
+        <dt>Imágenes ilustrativas</dt>
+        <dd>
+          <div id="productImages">
+          </div>
+        </dd>
+        <h3>Productos Relacionados</h3>
+        <div id="productoRelacionado" class="text-center p-4">
         </div>
-      </dd>
-      <h3>Productos Relacionados</h3>
-        <div class="row text-center text-lg-left pt-2" id="productoRelacionado">
-      </div>
-    </dl>
-
-    <dl>
-      <h3 id="productCommentsCant" >Comentarios</h3>
-      <div id="productComments">
-      </div>
-    </dl>
-    <dl>
-      <dt>Ingrese un nuevo comentario</dt>
-        <textarea class="form-control" id="addnewcomment" ></textarea>
+      </dl>
+      <dl>
+        <h3 id="productCommentsCant">Comentarios</h3>
+        <div id="productComments">
+        </div>
+      </dl>
+      <dl>
+        <dt>Ingrese un nuevo comentario</dt>
+        <textarea class="form-control" id="addnewcomment"></textarea>
         <p id="mensajeEnviado"></p>
         <select id="puntaje">
           <option value="0" selected>Puntaje</option>
@@ -87,10 +87,9 @@
         </select>
         <br>
         <button id="enviarComentario">Enviar</button>
-   
-    </dl>
-    <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
-  </div>
+      </dl>
+      <a type="button" class="btn btn-light btn-lg btn-block" href="products.html">Ver productos</a>
+    </div>
   </div>
   </div>
   <footer class="text-muted">
