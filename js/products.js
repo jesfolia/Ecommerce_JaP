@@ -51,7 +51,8 @@ function aMostrar(tipo) {
                 let soldCount = datos[index].soldCount;
 
                 tabla += `
-                <a href="product-info.html" class="list-group-item list-group-item-action"> 
+                <a href="product-info.html" class="list-group-item list-group-item-action">
+
                     <div class="list-group-item list-group-item-action">
                         <div class="row">
                             <div class="col-3">
@@ -70,7 +71,7 @@ function aMostrar(tipo) {
                             </div>
                         </div>
                     </div>
-                    </a>
+</a>
                     `
                 document.getElementById("autos").innerHTML = tabla;
                 index++;
@@ -82,6 +83,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
     let tipo = "mostrar";
     aMostrar(tipo);
 });
+
 
 document.getElementById("FiltroLimpiar").onclick = function (e) {
     document.getElementById("FiltroMin").value = "";

@@ -40,24 +40,134 @@
       <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
       <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
-      <div class="py-2 d-none d-md-inline-block" style="color: aliceblue;" >
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="Usuario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <div class="py-2 d-none d-md-inline-block" style="color: aliceblue;">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="Usuario" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
         </button>
-        <div class="dropdown-menu" >
+        <div class="dropdown-menu">
           <a class="dropdown-item" href="cart.html">Ver mi carrito</a>
           <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
           <a class="dropdown-item" href="index.html" id="cerrar">Cerrar sesión</a>
         </div>
       </div>
-   </nav>
+  </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
+    <div class="text-center p-4">
+      <h2>Mi carrito de compras</h2>
+      <p class="lead">Encontrarás aquí todos los articulos que seleccionaste para comprar</p>
+    </div>
+    <div id="cart">
+      <div class="row justify-content-md-center">
+        <div class="col-md-8 order-md-1">
+          <h4 class="mb-3">Información del carrito</h4>
+          <table >
+            <tr>
+              <th></th>
+              <th>Producto</th>
+              <th>Costo</th>
+              <th>Cantidad</th>
+              <th>Subtotal</th>
+            </tr>
+            <tr>
+              <td id="productImages"></td>
+              <td id="productName"></td>
+              <td id="productCost"></td>
+              <td id="productCount"></input></td>
+              <td id="productCostTotal"></td>
+            </tr>
+          </table>
+          <br>
+          <h5 class="mb-3">Tipo de envio</h5>
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="envioPremium" name="publicationType" type="radio" class="custom-control-input" checked
+                required>
+              <label class="custom-control-label" for="envioPremium">Premium 2 a 5 días (15%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="envioExpress" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="envioExpress">Express 5 a 8 días (7%)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="envioStandard" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="envioStandard">Estándar de 12 a 15 días (5%)</label>
+            </div>
+          </div>
+          <h4 class="mb-3">Costos</h4>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted" id="SubT"></small>
+              </div>
+              <span class="text-muted" id="productCostText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Costo de envío</h6>
+                <small class="text-muted" id="costoEnvio"></small>
+              </div>
+              <span class="text-muted" id="comissionText">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total ($)</span>
+              <strong id="costoTotal">-</strong>
+            </li>
+          </ul>
+          <h5 class="mb-3">Dirección de envío</h5>
+
+          <form class="needs-validation" id="sell-info">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="EnvioCalle">Calle</label>
+                <input type="text" class="form-control" id="EnvioCalle" placeholder="" value="" >
+                <div class="invalid-feedback">
+                  Calle
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="EnvioNumero">Número</label>
+                <input type="number" class="form-control" id="EnvioNumero" placeholder="" value="" >
+                <div class="invalid-feedback">
+                  Número
+                </div>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="EnvioEsquina">Esquina</label>
+                <input type="text" class="form-control" id="EnvioEsquina" placeholder="" value="" >
+                <div class="invalid-feedback">
+                  Esquina
+                </div>
+              </div>
+            </div>
+          </form>
+          <button class="btn btn-primary btn-lg"  id="Comprar">Comprar</button>
+          <p id="envio"></p>
+          <div class="alert fade" role="alert" id="alertResult">
+          <span id="result"></span>
+        </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div>
+    </div> -->
   </div>
+
+  <footer class="text-muted">
+    <div class="container">
+      <p class="float-right">
+        <a href="#">Volver arriba</a>
+      </p>
+      <p>Este sitio forma parte de Desarrollo Web - JAP - 2021</p>
+      <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+    </div>
+  </footer>
   <div id="spinner-wrapper">
     <div class="lds-ring">
       <div></div>

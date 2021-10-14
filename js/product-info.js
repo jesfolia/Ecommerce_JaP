@@ -66,7 +66,6 @@ function aMostrar() {
                             let cost = datos[i].cost;
                             let currency = datos[i].currency;
                             let imgSrc = datos[i].imgSrc;
-                            console.log (i)
                             if( i == 1){
                                 productosR += `
                                     <div id="Carousel" class="carousel slide" data-ride="carousel">
@@ -80,7 +79,6 @@ function aMostrar() {
                                                     <p class="card-text">` + description + ` <br> ` + currency + ` ` + cost + `</p>
                                                 </div>
                                             </div>   
-                                        </a>      
      
                                             </div>       
                                 `
@@ -119,7 +117,6 @@ function aMostrar() {
                 </div>
         `
                     document.getElementById("productoRelacionado").innerHTML += productosR;
-                    console.log(productosR)
                 });
 
 /*
