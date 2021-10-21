@@ -15,17 +15,17 @@ function envio(totalCost) {
     document.getElementById("costoTotal").innerHTML = totalCost + envioCost;
 
     document.getElementById("envioPremium").addEventListener("change", function () {
-        envioCost = totalCost * 0.15;
+        envioCost = Math.round(totalCost * 0.15);
         document.getElementById("costoEnvio").innerHTML = envioCost;
         document.getElementById("costoTotal").innerHTML = totalCost + envioCost;
     });
     document.getElementById("envioExpress").addEventListener("change", function () {
-        envioCost = totalCost * 0.07;
+        envioCost = Math.round(totalCost * 0.07);
         document.getElementById("costoEnvio").innerHTML = envioCost;
         document.getElementById("costoTotal").innerHTML = totalCost + envioCost;
     });
     document.getElementById("envioStandard").addEventListener("change", function () {
-        envioCost = totalCost * 0.05;
+        envioCost = Math.round(totalCost * 0.05);
         document.getElementById("costoEnvio").innerHTML = envioCost;
         document.getElementById("costoTotal").innerHTML = totalCost + envioCost;
     });
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
                 let totalCost = unitCost * count;
                 // Mostrar datos del carrito producto
                 document.getElementById("productName").innerHTML = name;
-                document.getElementById("productCount").innerHTML = `<input type="text" class="form-control" id="cantidad" placeholder="" value="` + count + `" ></input>`
+                document.getElementById("productCount").innerHTML = `<input type="number" min ="1" class="form-control" id="cantidad" placeholder="" value="` + count + `" ></input>`
                 document.getElementById("productCost").innerHTML = currency + " " + unitCost;
                 document.getElementById("SubT").innerHTML = currency + " " + totalCost;
                 document.getElementById("productImages").innerHTML = `<img class="img-fluid img-thumbnail" src="` + src + `" alt="">`;

@@ -50,5 +50,6 @@ var getJSONData = function(url){
 document.addEventListener("DOMContentLoaded", function(e){
   let usuarioMostrar = (localStorage.getItem('Usuario'))+ " " + (localStorage.getItem('Fecha'));
   document.getElementById("Usuario").innerHTML = usuarioMostrar; //Entrega 2
+
 });
 

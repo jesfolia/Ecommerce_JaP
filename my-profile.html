@@ -4,7 +4,6 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <title>eMercado - Todo lo que busques está aquí</title>
@@ -51,12 +50,66 @@
       </div>
       </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
+    <div class="container">
+      <div class="text-center p-4">
+        <h2>Mi perfil</h2>
+        <img id ="img" src="https://i.ibb.co/tYSMhYQ/computer-engineering-science-tech-wallpaper-preview.jpg" alt="computer-engineering-science-tech-wallpaper-preview" width="100">
+
+        <p class="lead">Datos personales</p>
+      </div>
+      <form class="needs-validation" id="perfile-info">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="pNombre">Primer nombre</label>
+            <input type="text" class="form-control" id="pNombre" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Primer nombre
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sNombre">Segundo nombre</label>
+            <input type="text" class="form-control" id="sNombre" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Segundo Nombre
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="pApellido">Primer apellido</label>
+            <input type="text" class="form-control" id="pApellido" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Primer Apellido
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="sApellido">Segundo apellido</label>
+            <input type="text" class="form-control" id="sApellido" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Segudno apellido
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="Email">E-mail</label>
+            <input type="text" class="form-control" id="Email" placeholder="" value="" >
+            <div class="invalid-feedback">
+              E-mail
+            </div>
+            <label for="Telefono">Telefono de contacto</label>
+          <input type="text" class="form-control" id="Telefono" placeholder="" value="" >
+          <div class="invalid-feedback">
+            Telefono de contacto
+          </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary btn-lg"  id="Guardar">Guardar cambios</button>
+      </form>
+
+      <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
       <h4 class="alert-heading">¡A trabajar! :)</h4>
       <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
     </div>
+    -->
   </div>
   <footer class="text-muted bg-light">
     <div class="container">
@@ -64,6 +117,7 @@
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>
   </footer>
+
   <div class="alert fade alert-success" role="alert" id="alertResult">
     <span id="resultSpan"></span>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
