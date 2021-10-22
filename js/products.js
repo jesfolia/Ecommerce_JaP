@@ -47,7 +47,7 @@ function aMostrar(tipo) {
                     <div class="container">
                         <div class="row">
                         `
-                        document.getElementById("autos").innerHTML = tabla;
+            document.getElementById("autos").innerHTML = tabla;
 
             while (index < datos.length) {
                 let name = datos[index].name;
@@ -58,7 +58,7 @@ function aMostrar(tipo) {
                 let soldCount = datos[index].soldCount;
 
                 tabla += `
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
                                     <img class="bd-placeholder-img card-img-top" src="` + imgSrc + `" alt="` + name + `>
                                     <h3 class="m-3"></h3>
@@ -75,7 +75,7 @@ function aMostrar(tipo) {
                 index++;
             }
         });
-        document.getElementById("autos").innerHTML += ` </div> </div> </div>`;
+        document.getElementById("autos").innerHTML = ` </div> </div> </div>`;
 
     }
 
