@@ -53,9 +53,8 @@
     <div class="container">
       <div class="text-center p-4">
         <h2>Mi perfil</h2>
-        <img id ="img" src="https://i.ibb.co/tYSMhYQ/computer-engineering-science-tech-wallpaper-preview.jpg" alt="computer-engineering-science-tech-wallpaper-preview" width="100">
-
         <p class="lead">Datos personales</p>
+        <img id ="img" alt="imagen de perfil" width="100" src="img/Perfil.png">
       </div>
       <form class="needs-validation" id="perfile-info">
         <div class="row">
@@ -88,16 +87,33 @@
             </div>
           </div>
           <div class="col-md-6 mb-3">
+            <label for="Edad">Edad</label>
+            <input type="number" class="form-control" id="Edad" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Edad
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
             <label for="Email">E-mail</label>
-            <input type="text" class="form-control" id="Email" placeholder="" value="" >
+            <input type="email" class="form-control" id="Email" placeholder="" value="" >
             <div class="invalid-feedback">
               E-mail
             </div>
-            <label for="Telefono">Telefono de contacto</label>
-          <input type="number" class="form-control" id="Telefono" placeholder="" value="" >
-          <div class="invalid-feedback">
-            Telefono de contacto
           </div>
+          <div class="col-md-6 mb-3">
+            <label for="Telefono">Telefono de contacto</label>
+            <input type="number" class="form-control" id="Telefono" placeholder="" value="" >
+            <div class="invalid-feedback">
+              Telefono de contacto
+            </div> 
+          </div>
+            <div class="col-md-6 mb-3">
+              <label for="imagenP">Ingrese el link de la imagen</label>
+              <input type="text" class="form-control" id="imagenP" placeholder="" value="" >
+              <div class="invalid-feedback">
+                Ingrese el link de la imagen
+               </div>
+            </div>
           </div>
         </div>
         <button type="button" class="btn btn-primary btn-lg"  id="Guardar">Guardar cambios</button>

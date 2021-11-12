@@ -3,11 +3,32 @@
 //elementos HTML presentes.
 let totalCost = 0;
 let envioCost = 0;
+let SubT = 0;
+let totalCostp = 0;
+let totalCostPino = 0;
+let totalCostAuto = 0;
+let unitCost = 0;
+let currency = "";
+let validacion = 0;
+
+
 function costoTotal(unitCost, cantidad, currency) {
-    let totalCost = unitCost * cantidad.value;
-    document.getElementById("productCostTotal").innerHTML = currency + " " + totalCost;
-    document.getElementById("SubT").innerHTML = currency + " " + totalCost;
-    envio(totalCost);
+    if (currency === "UYU") {
+        totalCost = unitCost * cantidad.value
+        document.getElementById("subTU").innerHTML = currency +" "+ totalCost;
+        SubT = totalCost + totalCostAuto
+        totalCostPino = totalCost;
+    }
+
+    else {
+        totalCost =  unitCost * cantidad.value
+        let pesos = totalCost * 40
+        document.getElementById("subTD").innerHTML = currency +" "+ totalCost;
+        SubT = totalCostPino + pesos
+        totalCostAuto = pesos
+    }
+    document.getElementById("SubT").innerHTML = SubT;
+    envio(SubT);
 }
 function envio(totalCost) {
     envioCost = totalCost * 0.15;
@@ -32,29 +53,71 @@ function envio(totalCost) {
 }
 document.addEventListener("DOMContentLoaded", function (e) {
     let i = 0;
-    fetch(CART_INFO_URL)
+    fetch("https://japdevdep.github.io/ecommerce-api/cart/654.json")
         .then(result => result.json())
         .then(data => {
             while (i < data.articles.length) {
                 let name = data.articles[i].name;
                 let count = data.articles[i].count;
-                let unitCost = data.articles[i].unitCost;
-                let currency = data.articles[i].currency;
+                unitCost = data.articles[i].unitCost;
+                currency = data.articles[i].currency;
                 let src = data.articles[i].src;
-                let totalCost = unitCost * count;
+                totalCostp = unitCost * count
                 // Mostrar datos del carrito producto
-                document.getElementById("productName").innerHTML = name;
-                document.getElementById("productCount").innerHTML = `<input type="number" min ="1" class="form-control" id="cantidad" placeholder="" value="` + count + `" ></input>`
-                document.getElementById("productCost").innerHTML = currency + " " + unitCost;
-                document.getElementById("SubT").innerHTML = currency + " " + totalCost;
-                document.getElementById("productImages").innerHTML = `<img class="img-fluid img-thumbnail" src="` + src + `" alt="">`;
-                document.getElementById("costoTotal").innerHTML = currency + " " + totalCost;
-                costoTotal(unitCost, cantidad, currency);
-                document.getElementById("cantidad").addEventListener("change", function () {
-                    costoTotal(unitCost, cantidad, currency);
+                if (currency === "UYU") {
+                    let cart = `
+                    <tr>
+                        <td> <img class="img-fluid img-thumbnail" src="` + src + `" alt=""  width="100"></td>
+                        <td> ` + name + ` </td>
+                        <td></td>
+                        <td>` + currency + `  </td>
+                        <td id="costo0">` + unitCost + `  </td>
+                        <td></td>
+                        <td> <input type="number" min ="1" class="form-control" id="cantidad` + i + `"  placeholder="" value="` + count + `" ></input></td>
+                        <td></td>
+                        <td id="subTU"> `  + currency + " " + totalCostp + ` </td>
+                    </tr>
+                `
+                document.getElementById("cartProducts").innerHTML += cart;
+                totalCost += totalCostp
+                totalCostPino = totalCostp;
+                }
+                else {
+             
+                    let cart = `
+                    <tr>
+                    <td> <img class="img-fluid img-thumbnail" src="` + src + `" alt=""  width="100"></td>
+                    <td> ` + name + ` </td>
+                    <td></td>
+                    <td>` + currency + `  </td>
+                    <td id="costo0">` + unitCost + `  </td>
+                    <td></td>
+                    <td> <input type="number" min ="1" class="form-control" id="cantidad` + i + `"  placeholder="" value="` + count + `" ></input></td>
+                    <td></td>
+                    <td id="subTD"> `  + currency + " " + totalCostp + ` </td>
+                    </tr>
+                `
+                document.getElementById("cartProducts").innerHTML += cart;
+                totalCost += totalCostp *40
+                totalCostAuto += totalCostp 
+                }
+
+                document.getElementById("cantidad0").addEventListener("change", function () {
+  
+                    costoTotal(data.articles[0].unitCost, cantidad0, data.articles[0].currency);
+
                 });
-                i++
+                i++     
             }
+            document.getElementById("cantidad1").addEventListener("change", function () {
+
+                costoTotal(unitCost, cantidad1, currency);
+
+            });
+
+            document.getElementById("SubT").innerHTML = totalCost;
+            envio(totalCost);
+
         });
 });
 document.getElementById("Comprar").onclick = function (e) { //Entrega 5
@@ -62,7 +125,10 @@ document.getElementById("Comprar").onclick = function (e) { //Entrega 5
     let direccion = document.getElementById('EnvioCalle').value;
     let esquina = document.getElementById('EnvioEsquina').value;
     let numero = document.getElementById('EnvioNumero').value;
-    if (direccion.length == 0 || numero.length == 0 || esquina.length == 0) {
+    let pais = document.getElementById('EnvioPais').value;
+    console.log(direccion.length == 0 || numero.length == 0 || esquina.length == 0 || pais.length == 0 ||  validacion == 0)
+    console.log(validacion)
+    if (direccion.length == 0 || numero.length == 0 || esquina.length == 0 || pais.length == 0 ||  validacion == 0) {
         envio += `	
           <FONT FACE="arial" SIZE=2 COLOR="red">
           Ingresar los datos para realizar el envio</FONT>
@@ -72,12 +138,54 @@ document.getElementById("Comprar").onclick = function (e) { //Entrega 5
     }
     else {
         envio += `	
-          <FONT FACE="arial" SIZE=2 COLOR="red">
-          Se envio correctamente a :` + direccion + " " + numero + ` </FONT>
+          <FONT FACE="arial" SIZE=5 COLOR="black">
+          Se envio correctamente a: ` + direccion + " " + numero + ` </FONT>
         `
         document.getElementById("envio").innerHTML = envio;
         document.getElementById('EnvioCalle').value = "";
         document.getElementById('EnvioEsquina').value = "";
         document.getElementById('EnvioNumero').value = "";
+        document.getElementById('EnvioPais').value = "";
+        document.getElementById('NumeroTarjeta').value = "";
+        document.getElementById('codigoSeguridad').value = "";
+       document.getElementById('vencimiento').value ="";
+       document.getElementById('NumeroCuenta').value = "";
+       document.getElementById("formaP").innerHTML = `<p class="m-1 btn"> No ingreso forma de pago </p>`;
+
     }
+
+}
+document.getElementById("modalFPago").onclick = function(e) {
+
+    let fPago =0;
+    validacion = 0;
+    let tarjeta = document.getElementById('NumeroTarjeta').value;
+    let codigo = document.getElementById('codigoSeguridad').value;
+    let vencimiento = document.getElementById('vencimiento').value;
+    let cuenta = document.getElementById('NumeroCuenta').value;
+ 
+  
+    if(document.getElementById('Tarjeta').checked ){
+      document.getElementById("formaP").innerHTML = `<p class="m-1 btn"> Tarjeta de credito </p>`;
+      if(tarjeta.length == 0 && codigo.length == 0 && vencimiento.length == 0){
+      validacion = 0;
+    }
+    else {
+        validacion ++;
+    }
+    }
+
+    else if(document.getElementById('cuantaBancaria').checked){
+      document.getElementById("formaP").innerHTML = `<p class="m-1 btn">Transferencia bancaria</p>`;
+        if(cuenta.length == 0){
+            validacion = 0;
+        }
+        else {
+            validacion ++;
+        }
+    }
+
+
+console.log(validacion)
+
 }

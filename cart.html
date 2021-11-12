@@ -51,6 +51,7 @@
         </div>
       </div>
   </nav>
+
   <div class="container p-5">
     <div class="text-center p-4">
       <h2>Mi carrito de compras</h2>
@@ -60,20 +61,18 @@
       <div class="row justify-content-md-center">
         <div class="col-md-8 order-md-1">
           <h4 class="mb-3">Información del carrito</h4>
-          <table >
+          <p id="prueba"></p>
+          <table id="cartProducts">
             <tr>
               <th></th>
               <th>Producto</th>
+              <th></th>
+              <th></th>
               <th>Costo</th>
+              <th></th>
               <th>Cantidad</th>
+              <th></th>
               <th>Subtotal</th>
-            </tr>
-            <tr>
-              <td id="productImages"></td>
-              <td id="productName"></td>
-              <td id="productCost"></td>
-              <td id="productCount"></input></td>
-              <td id="productCostTotal"></td>
             </tr>
           </table>
           <br>
@@ -95,19 +94,13 @@
           </div>
           <h4 class="mb-3">Costos</h4>
           <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Subtotal</h6>
-                <small class="text-muted" id="SubT"></small>
-              </div>
-              <span class="text-muted" id="productCostText">-</span>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Subtotal ($)</span>
+              <strong id="SubT" class="text-muted">-</strong>
             </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Costo de envío</h6>
-                <small class="text-muted" id="costoEnvio"></small>
-              </div>
-              <span class="text-muted" id="comissionText">-</span>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Costo de envío($)</span>
+              <strong class="text-muted" id="costoEnvio">-</strong>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span>Total ($)</span>
@@ -120,43 +113,50 @@
             <div class="row">
               <div class="col-md-6 mb-3">
                 <label for="EnvioCalle">Calle</label>
-                <input type="text" class="form-control" id="EnvioCalle" placeholder="" value="" >
+                <input type="text" class="form-control" id="EnvioCalle" placeholder="" value="">
                 <div class="invalid-feedback">
                   Calle
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="EnvioNumero">Número</label>
-                <input type="number" class="form-control" id="EnvioNumero" placeholder="" value="" >
+                <input type="number" class="form-control" id="EnvioNumero" placeholder="" value="">
                 <div class="invalid-feedback">
                   Número
                 </div>
               </div>
               <div class="col-md-6 mb-3">
                 <label for="EnvioEsquina">Esquina</label>
-                <input type="text" class="form-control" id="EnvioEsquina" placeholder="" value="" >
+                <input type="text" class="form-control" id="EnvioEsquina" placeholder="" value="">
                 <div class="invalid-feedback">
                   Esquina
                 </div>
               </div>
+              <div class="col-md-6 mb-3">
+                <label for="EnvioPais">Pais</label>
+                <input type="text" class="form-control" id="EnvioPais" placeholder="" value="">
+                <div class="invalid-feedback">
+                  Pais
+                </div>
+              </div>
+              <!--Penultima entrega-->
+              <div class="row">
+                <p id="formaP" class="m-1 btn">No ingreso forma de pago</p>
+                <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#pagoModal">Forma de
+                  pago</button> 
+              </div>
+
             </div>
           </form>
-          <button class="btn btn-primary btn-lg"  id="Comprar">Comprar</button>
+          <br>
+          <button class="btn btn-primary btn-lg" id="Comprar">Comprar</button>
           <p id="envio"></p>
           <div class="alert fade" role="alert" id="alertResult">
-          <span id="result"></span>
-        </div>
-
+            <span id="result"></span>
+          </div>
         </div>
       </div>
     </div>
-
-    <!--<div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
-    </div> -->
   </div>
 
   <footer class="text-muted">
@@ -176,6 +176,73 @@
       <div></div>
     </div>
   </div>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="pagoModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forma de pago</h5>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <form>
+              <div class="d-block my-3">
+                <div class="custom-control custom-radio">
+                  <input id="Tarjeta" name="publicationType" type="radio" class="custom-control-input"
+                    required="">
+                  <label class="custom-control-label" for="Tarjeta">Tarjeta de credito</label>
+                  <br><br>
+                  <div class="row">
+                    <div class="col-md-6 mb-2">
+                      <label for="NumeroTarjeta">Numero de tarjeta</label>
+                      <input type="number" class="form-control" id="NumeroTarjeta" placeholder="" value="">
+                      <div class="invalid-feedback">
+                        Numero de tarjeta
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label for="codigoSeguridad">Código de seguridad</label>
+                      <input type="number" class="form-control" id="codigoSeguridad" placeholder="" value="">
+                      <div class="invalid-feedback">
+                        Código de seguridad
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-2">
+                      <label for="vencimiento">Vencimiento (MM de AA)</label>
+                      <input type="month" class="form-control" id="vencimiento" placeholder="" value="" checked
+                        required>
+                      <div class="invalid-feedback">
+                        Vencimiento (MM de AA)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="custom-control custom-radio">
+                  <input id="cuantaBancaria" name="publicationType" type="radio" class="custom-control-input"
+                    required="">
+                  <label class="custom-control-label" for="cuantaBancaria">Transferencia bancaria</label>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6 mb-2">
+                      <label for="NumeroCuenta">Numero de cuenta</label>
+                      <input type="number" class="form-control" id="NumeroCuenta" placeholder="" value="">
+                      <div class="invalid-feedback">
+                        Numero de tarjeta
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="modal-footer">
+              <button type="button" id="modalFPago" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/jquery-3.4.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/dropzone.js"></script>
@@ -184,3 +251,15 @@
 </body>
 
 </html>
+<!--            <div class="d-block my-3">
+              <div class="custom-control custom-radio">
+                <input id="Tarjeta"  type="radio" class="custom-control-input" checked required>
+                <label class="custom-control-label" for="Tarjeta">Tarjeta de credito</label>
+               <br> <br>
+                
+                
+            </div>
+              </div>
+              
+              
+-->
