@@ -41,6 +41,17 @@ function aMostrar(tipo) {
                 index ++;
                 }
             }
+            else if (tipo == "buscar"){
+                let abuscar = document.getElementById("buscarinput").value;
+                while (index < data.length) {
+                    let nombre = data[index].name;
+                    let descripcion = data[index].description
+                    if (nombre.includes(abuscar) || descripcion.includes(abuscar)){
+                        datos.push (data[index]);
+                    }
+                index ++;
+                }
+            }
             index=0;
             tabla += `
                 <div class="album py-5 bg-light">
@@ -84,6 +95,11 @@ document.addEventListener("DOMContentLoaded", function (e) {
     aMostrar(tipo);
 });
 
+document.getElementById("buscarinput").onchange = function(e) {
+    let tipo = "buscar";
+    aMostrar(tipo);
+
+}
 
 document.getElementById("FiltroLimpiar").onclick = function (e) {
     document.getElementById("FiltroMin").value = "";

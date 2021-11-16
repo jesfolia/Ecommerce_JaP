@@ -16,7 +16,7 @@ function costoTotal(unitCost, cantidad, currency) {
     if (currency === "UYU") {
         totalCost = unitCost * cantidad.value
         document.getElementById("subTU").innerHTML = currency + " " + totalCost;
-        SubT = totalCost + totalCostAuto
+        SubT = totalCost + totalCostAuto;
         totalCostPino = totalCost;
     }
 
@@ -100,7 +100,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
                     document.getElementById("cartProducts").innerHTML += cart;
                     totalCost += totalCostp * 40
                     totalCostAuto += totalCostp
-                }
+                    totalCostAuto = totalCostAuto *40
+            }
 
                 document.getElementById("cantidad0").addEventListener("change", function () {
 
@@ -126,8 +127,6 @@ document.getElementById("Comprar").onclick = function (e) { //Entrega 5
     let esquina = document.getElementById('EnvioEsquina').value;
     let numero = document.getElementById('EnvioNumero').value;
     let pais = document.getElementById('EnvioPais').value;
-    console.log(direccion.length == 0 || numero.length == 0 || esquina.length == 0 || pais.length == 0 || validacion == 0)
-    console.log(validacion)
     if (direccion.length == 0 || numero.length == 0 || esquina.length == 0 || pais.length == 0 || validacion == 0) {
         envio += `	
           <FONT FACE="arial" SIZE=2 COLOR="red">
@@ -156,8 +155,6 @@ document.getElementById("Comprar").onclick = function (e) { //Entrega 5
 
 }
 document.getElementById("modalFPago").onclick = function (e) {
-
-    let fPago = 0;
     validacion = 0;
     let tarjeta = document.getElementById('NumeroTarjeta').value;
     let codigo = document.getElementById('codigoSeguridad').value;
